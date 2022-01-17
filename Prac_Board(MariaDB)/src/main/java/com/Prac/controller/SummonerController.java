@@ -43,7 +43,7 @@ import com.Prac.model.SummonerVO;
 public class SummonerController {
 	
 	private static final Logger log = LoggerFactory.getLogger(SummonerController.class);
-	final static String API_KEY = "RGAPI-844f27d9-7e24-459d-9cf5-9123f62c3d3f";
+	final static String API_KEY = "YOUR_KEY";
 	/* 메인 및 매주 로테이션 */ 
 	@RequestMapping("/")
 	public String lolMain(Model model) {
