@@ -1,0 +1,33 @@
+html,
+body {
+    height: 100%;
+}
+
+
+.chamimg{
+	width:60px;
+	height:60px;
+}
+.rotatnav{
+	text-align : center;
+	font-size :14px;
+	color : black;
+	border: 1px solid;
+}
+
+
+.rotation{
+	width: 70px;
+	height:70px;
+	text-align: center;
+}
+.chamName{
+	font-size : 10px;
+	
+}
+
+.card {
+        margin: 0 auto; /* Added */
+        float: none; /* Added */
+        margin-bottom: 10px; /* Added */
+}
