@@ -2,32 +2,99 @@ html,
 body {
     height: 100%;
 }
-
-
-.chamimg{
-	width:60px;
-	height:60px;
+.rotation-content-main {
+  	margin:0 auto;
+    width:715px;
+    background-color: #f9f9fa;
+    border: solid 1px #e9eff4;
+    border-right: none;
+    box-sizing: border-box;
 }
-.rotatnav{
+.nav-logo-img{
+}
+.chamimg{
+	width:84px;
+	height:84px;
+}
+.rotation-content-index{
+  	width: 1080px;
+    margin: 15px auto 0;
+	
+}
+
+.rotation-nav{
 	text-align : center;
-	font-size :14px;
-	color : black;
-	border: 1px solid;
+	font-weight: bold;
+	font-size :18px;
+	background-color: #F9FFFF;
 }
 
 
 .rotation{
+	margin-left: 12px;
+	display: inline-block;
 	width: 70px;
 	height:70px;
-	text-align: center;
 }
 .chamName{
-	font-size : 10px;
+	width: 80px;
+	font-size : 13px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+	white-space: nowrap;
+	font-weight: bold;
+}
 	
+.searchbar-main{
+	margin: 15px auto 0;
+	width: 1080px;
+
+}
+.searchbar{
+	position: relative;
+	margin: 0 auto;
+
+	width: 715px;
+}
+.input-main{
+	width:100%;
+	border-radius: 20px;
+    border: 1px solid #bbb;
+    margin: 10px 0;
+    padding: 10px 12px;
+}
+.main-input-button{
+	background-color:transparent;
+	content: "\f002";
+	font-family: fontAwesome\ 5 Free;
+	color: #777;
+    position: absolute;
+    right: 15px;
+    top: 18px;
+    border-radius: 20px;
+    border:none;
 }
 
-.card {
-        margin: 0 auto; /* Added */
-        float: none; /* Added */
-        margin-bottom: 10px; /* Added */
+.nav-search{
+	width: 200px;
+}
+.nav-input{
+	width:100%;
+	border-radius: 5px;
+	padding: 5px 10px;
+	border:none;
+}
+
+.nav-input-button{
+	background-color:transparent;
+	color: #777;
+    position: absolute;
+    top: 4px;
+    border-radius: 20px;
+    border:none;
+
+}
+.margin-space{
+	margin-top:40px;
+	
 }

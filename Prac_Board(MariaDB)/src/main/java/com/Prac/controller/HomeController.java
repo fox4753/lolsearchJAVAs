@@ -59,13 +59,13 @@ public class HomeController {
 		
 	}
 	
-	 @RequestMapping("/list")
+	 @RequestMapping("/12")
 	    public String lolinfo() {
 	        
 	
 	        
 	        
-	        return "redirect:/board/list";
+		 return "km";
 	        
 	    }
 	

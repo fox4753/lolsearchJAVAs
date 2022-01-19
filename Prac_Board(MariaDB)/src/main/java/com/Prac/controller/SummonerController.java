@@ -34,7 +34,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
+//import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import com.Prac.model.ChampionVO;
 import com.Prac.model.SummonerVO;
 
