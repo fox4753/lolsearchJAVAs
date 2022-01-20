@@ -6,7 +6,7 @@
 <html>
 <head>
 <link rel="stylesheet" href="resources/css/bootstrap.css">
-<link rel="stylesheet" href="resources/css/lolmain.css?ver=47	"  type="text/css">
+<link rel="stylesheet" href="resources/css/lolmain.css?ver=48	"  type="text/css">
 <script src="https://kit.fontawesome.com/80d7e22673.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -15,7 +15,7 @@
 <nav class="navbar navbar-blue bg-dark">
 <div class="container-fluid">
 	<!-- navbar -->
-	<a class="nava-logo-img " href="/lolmain"><img alt="logo" src="resources/img/logo.png"></a>
+	<a  href="/lolmain"><img alt="logo" src="resources/img/logo.png" class="nav-logo-img"></a>
 	<form action="/SummonerInfo " autocomplete="off">
 		<div class="input-group nav-search justify-content-end">
   			<input type="text" class="nav-input " placeholder="닉네임을 입력해주세요" name="sname">

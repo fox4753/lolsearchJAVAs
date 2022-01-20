@@ -4,15 +4,17 @@ public class SummonerVO {
 	private int iconid;
 	private String name;
 	private int level;
+	private String puuid;
 
 	public SummonerVO() {
 		
 	}
 	
-	public SummonerVO(int iconid, String name, int level) {
+	public SummonerVO(int iconid, String name, int level, String puuid) {
 		this.iconid = iconid;
 		this.name = name;
 		this.level = level;
+		this.puuid = puuid;
 	}
 	
 	public String getName() {
@@ -33,9 +35,18 @@ public class SummonerVO {
 	public void setIconid(int iconid) {
 		this.iconid = iconid;
 	}
+
+	public String getPuuid() {
+		return puuid;
+	}
+
+	public void setPuuid(String puuid) {
+		this.puuid = puuid;
+	}
+
 	@Override
 	public String toString() {
-		return "SummonerVO [name=" + name + ", level=" + level + ", iconid=" + iconid + "]";
+		return "SummonerVO [iconid=" + iconid + ", name=" + name + ", level=" + level + ", puuid=" + puuid + "]";
 	}
 	
 	

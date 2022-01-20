@@ -44,7 +44,7 @@ import com.Prac.model.SummonerVO;
 public class SummonerController {
 	
 	private static final Logger log = LoggerFactory.getLogger(SummonerController.class);
-	final static String API_KEY = "YOUR_KEY";
+	final static String API_KEY = "Your_KEY";
 	/* 메인 및 매주 로테이션 */ 
 	@RequestMapping("/")
 	public String lolMain(Model model) {
@@ -177,9 +177,76 @@ public class SummonerController {
 			String summonerid = (String) ob.get("id");
 			System.out.println(summonerid);
 			
+			String puuid = (String) ob.get("puuid");
+			System.out.println(puuid);
 			
-			temp = new SummonerVO(iconid, name, level);
+			temp = new SummonerVO(iconid, name, level, puuid);
+			
+			
+			//소환사 매치 검색
+			String urlstr2 ="https://asia.api.riotgames.com/lol/match/v5/matches/by-puuid/"+puuid+
+					"/ids?start=0&count=1&api_key="+ API_KEY;
+			
+			URL url2 = new URL(urlstr2);
+			HttpURLConnection urlconnection2 = (HttpURLConnection) url2.openConnection();
+			urlconnection2.setRequestMethod("GET");
+			br = new BufferedReader(new InputStreamReader(urlconnection2.getInputStream(), "UTF-8"));
+			String result2 ="";
+			String line2;
+			while((line2 = br.readLine()) != null) {
+				result2 = result2 +  line2;
+			}
+			//JSONArray 객체이름이없으면 JSONObject를 사용하지않고 Array로파싱 
+			JSONArray obj = (JSONArray) jsonParser.parse(result2);
+			
+			String matchid = (String) obj.get(0);
+			String matchurlstr ="https://asia.api.riotgames.com/lol/match/v5/matches/" + matchid + "?api_key="+ API_KEY;
+			URL matchDataurl = new URL(matchurlstr);
+			HttpURLConnection matchdataconn = (HttpURLConnection) matchDataurl.openConnection();
+			matchdataconn.setRequestMethod("GET");
+			br = new BufferedReader(new InputStreamReader(matchdataconn.getInputStream(), "UTF-8"));
+			String matchdata = "";
+			String line3;
+			while((line3 = br.readLine()) != null) {
+				matchdata = matchdata + line3;
+			}
+
+			
+			
+			
+			JSONObject matchob = (JSONObject) jsonParser.parse(matchdata);
+			JSONObject dataJsonObject = (JSONObject) matchob;
+			
+			
+			
 	
+				//summonerName
+				JSONArray arr = (JSONArray)matchob.get("info");
+				if(arr.size() > 0) {
+					for(int i =0; i<arr.size(); i++) {
+						JSONObject jobj = (JSONObject)arr.get(i);
+						System.out.println("================================");
+						JSONArray arr2 = (JSONArray)jobj.get("participants");
+						
+						JSONObject jobj2 = (JSONObject)arr2.get(i);
+						
+						System.out.println((String)jobj2.get("summonerName"));					}
+				}
+			
+			//All keys
+			/*
+			Set<String> keys = dataJsonObject.keySet();
+			for(String key : keys) {
+				JSONObject jsonKey = (JSONObject)dataJsonObject.get(key);
+				String keyJsonObject = (String) jsonKey.get("participants");
+				//String nameJsonObject = (String) jsonKey.get("name");
+				//String idJsonObject = (String) jsonKey.get("id");
+				//int maxChampion = keys.size(); 
+				
+				System.out.println("이름 == > " +  jsonKey);
+				//System.out.println("챔피언키 == > " + keyJsonObject);
+			}
+			 	*/
 		}catch(Exception e) {
 			System.out.println(e.getMessage());
 		}
@@ -190,6 +257,7 @@ public class SummonerController {
 		
 		return "lol/PlayerLevel";
 	}
+
 
 	
 

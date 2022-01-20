@@ -11,6 +11,8 @@ body {
     box-sizing: border-box;
 }
 .nav-logo-img{
+	height:64px;
+	width:128px;
 }
 .chamimg{
 	width:84px;

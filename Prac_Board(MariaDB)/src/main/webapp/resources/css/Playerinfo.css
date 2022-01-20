@@ -1,0 +1,26 @@
+@charset "UTF-8";
+
+.nav-logo-img{
+	height:64px;
+	width:128px;
+}
+
+.nav-search{
+	width: 200px;
+}
+.nav-input{
+	width:100%;
+	border-radius: 5px;
+	padding: 5px 10px;
+	border:none;
+}
+
+.nav-input-button{
+	background-color:transparent;
+	color: #777;
+    position: absolute;
+    top: 4px;
+    border-radius: 20px;
+    border:none;
+
+}
