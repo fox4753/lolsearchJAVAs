@@ -3,14 +3,10 @@ package com.Prac.controller;
 
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.FileReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
 import java.io.Reader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -19,12 +15,10 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
-import java.util.List;
 import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.json.JSONException;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -34,9 +28,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-//import org.apache.commons.lang.StringUtils;
-import org.apache.commons.lang3.StringUtils;
+
 import com.Prac.model.ChampionVO;
+import com.Prac.model.MatchdataVO;
 import com.Prac.model.SummonerVO;
 
 
@@ -44,7 +38,7 @@ import com.Prac.model.SummonerVO;
 public class SummonerController {
 	
 	private static final Logger log = LoggerFactory.getLogger(SummonerController.class);
-	final static String API_KEY = "Your_KEY";
+	final static String API_KEY = "YOUR_KEY";
 	/* 메인 및 매주 로테이션 */ 
 	@RequestMapping("/")
 	public String lolMain(Model model) {
@@ -149,6 +143,7 @@ public class SummonerController {
 		BufferedReader br = null;
 		String SummonerName = request.getParameter("sname");
 		SummonerVO temp = null;
+		MatchdataVO matchData = null;
 		try {
 			String urlstr ="https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/"+
 					SummonerName +"?api_key="+API_KEY;
@@ -214,24 +209,47 @@ public class SummonerController {
 			
 			
 			
-			JSONObject matchob = (JSONObject) jsonParser.parse(matchdata);
-			JSONObject dataJsonObject = (JSONObject) matchob;
 			
 			
+			Object obj3 = jsonParser.parse(matchdata);
+			JSONObject JsonObject = (JSONObject) obj3;
+			JSONObject dataJsonObject = (JSONObject) JsonObject.get("info");
 			
-	
-				//summonerName
-				JSONArray arr = (JSONArray)matchob.get("info");
-				if(arr.size() > 0) {
-					for(int i =0; i<arr.size(); i++) {
-						JSONObject jobj = (JSONObject)arr.get(i);
-						System.out.println("================================");
-						JSONArray arr2 = (JSONArray)jobj.get("participants");
+			JSONArray arr = (JSONArray)dataJsonObject.get("participants");
+			//summonerName
+			//Set<String> keys = datajson.keySet();
+			System.out.println(arr);
+			if (arr.size() > 0 ) {
+				for(int i = 0; i<arr.size(); i++) {
+					JSONObject namedataobj = (JSONObject)arr.get(i);
+					String namedata = (String)namedataobj.get("summonerName");
+					Long killsdata = ((Long)namedataobj.get("kills"));
+					Long deathsdata = ((Long)namedataobj.get("deaths"));
+					Long assistsdata = ((Long)namedataobj.get("assists"));
+					if(namedata.equals("Percier")) {
+						System.out.println("본인확인  : " + namedata);
 						
-						JSONObject jobj2 = (JSONObject)arr2.get(i);
-						
-						System.out.println((String)jobj2.get("summonerName"));					}
+						System.out.println("플레이 캐릭터 : " + (String)namedataobj.get("championName") );
+					
+					
+						System.out.println("킬 : " + killsdata);
+						System.out.println("데스 : " + deathsdata );
+						System.out.println("어시 : " + assistsdata);
+						temp = new SummonerVO(iconid, name, level, puuid);
+						matchData = new MatchdataVO (namedata, killsdata, deathsdata, assistsdata);
+					}
 				}
+			}
+			/*for(String key : keys) {
+				System.out.println("test2");
+				JSONObject jsonKey = (JSONObject)dataJsonObject.get(key);
+			//	String keyJsonObject = (String) key.get("summonerName");
+
+					
+					
+				System.out.println(jsonKey);
+						}
+			*/
 			
 			//All keys
 			/*
@@ -250,6 +268,7 @@ public class SummonerController {
 		}catch(Exception e) {
 			System.out.println(e.getMessage());
 		}
+		model.addAttribute("matchdata", matchData);
 		model.addAttribute("summoner", temp);
 		model.addAttribute("iconURL",
 				"http://ddragon.leagueoflegends.com/cdn/12.1.1/img/profileicon/"

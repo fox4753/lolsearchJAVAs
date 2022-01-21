@@ -24,3 +24,11 @@
     border:none;
 
 }
+.main-icon-img{
+	width:84px;
+	height:84px;
+}
+.match-content{
+	font-weight: bold;
+	font-size:13px;
+}

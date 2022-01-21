@@ -6,7 +6,7 @@
 <html>
 <head>
 <link rel="stylesheet" href="resources/css/bootstrap.css">
-<link rel="stylesheet" href="resources/css/lolmain.css?ver=2	"  type="text/css">
+<link rel="stylesheet" href="resources/css/Playerinfo.css?ver=4"  type="text/css">
 <script src="https://kit.fontawesome.com/80d7e22673.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -37,12 +37,27 @@
 	
 	
 	
-	
+	<h1>${matchdata.kills }</h1>
+	<h1>${matchdata.deaths }</h1>
+	<h1>${matchdata.assists }</h1>
 	<h1>${summoner.name }님 환영합니다.</h1>
 	<h1>소환사 레벨입니다</h1>
 	<h1>${summoner.level }</h1>
-	<img alt="아이콘" src=${iconURL } >
 	
+		<!-- 로테이션 -->
+	
+
+		<div class="rotation-content-index">
+			
+				<div class="rotation-content-main">
+				<div class="match-content"> 최근 전적 
+					${matchdata.kills }
+					${matchdata.deaths }
+					${matchdata.assists }
+					</div>
+					<img alt="아이콘" src=${iconURL } class="main-icon-img" >
+    			</div>
+	</div>
 	
 	
 	
