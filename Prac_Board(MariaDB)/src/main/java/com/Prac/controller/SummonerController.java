@@ -226,6 +226,14 @@ public class SummonerController {
 					Long killsdata = ((Long)namedataobj.get("kills"));
 					Long deathsdata = ((Long)namedataobj.get("deaths"));
 					Long assistsdata = ((Long)namedataobj.get("assists"));
+					Long item0 = ((Long)namedataobj.get("item0"));
+					Long item1 = ((Long)namedataobj.get("item1"));
+					Long item2 = ((Long)namedataobj.get("item2"));
+					Long item3 = ((Long)namedataobj.get("item3"));
+					Long item4 = ((Long)namedataobj.get("item4"));
+					Long item5 = ((Long)namedataobj.get("item5"));
+					Long item6 = ((Long)namedataobj.get("item6"));
+					String chamName = ((String)namedataobj.get("championName"));
 					if(namedata.equals("Percier")) {
 						System.out.println("본인확인  : " + namedata);
 						
@@ -236,43 +244,20 @@ public class SummonerController {
 						System.out.println("데스 : " + deathsdata );
 						System.out.println("어시 : " + assistsdata);
 						temp = new SummonerVO(iconid, name, level, puuid);
-						matchData = new MatchdataVO (namedata, killsdata, deathsdata, assistsdata);
+						matchData = new MatchdataVO (namedata, chamName, killsdata,  deathsdata, assistsdata,item0, item1, item2, item3, item4, item5, item6);
 					}
 				}
 			}
-			/*for(String key : keys) {
-				System.out.println("test2");
-				JSONObject jsonKey = (JSONObject)dataJsonObject.get(key);
-			//	String keyJsonObject = (String) key.get("summonerName");
-
-					
-					
-				System.out.println(jsonKey);
-						}
-			*/
-			
-			//All keys
-			/*
-			Set<String> keys = dataJsonObject.keySet();
-			for(String key : keys) {
-				JSONObject jsonKey = (JSONObject)dataJsonObject.get(key);
-				String keyJsonObject = (String) jsonKey.get("participants");
-				//String nameJsonObject = (String) jsonKey.get("name");
-				//String idJsonObject = (String) jsonKey.get("id");
-				//int maxChampion = keys.size(); 
-				
-				System.out.println("이름 == > " +  jsonKey);
-				//System.out.println("챔피언키 == > " + keyJsonObject);
-			}
-			 	*/
 		}catch(Exception e) {
 			System.out.println(e.getMessage());
 		}
 		model.addAttribute("matchdata", matchData);
 		model.addAttribute("summoner", temp);
 		model.addAttribute("iconURL",
-				"http://ddragon.leagueoflegends.com/cdn/12.1.1/img/profileicon/"
+				"http://ddragon.leagueoflegends.com/cdn/12.2.1/img/profileicon/"
 				+temp.getIconid()+".png");
+		model.addAttribute("chamicon",
+				"http://ddragon.leagueoflegends.com/cdn/12.2.1/img/champion/"+matchData.getChamName()+".png");
 		
 		return "lol/PlayerLevel";
 	}

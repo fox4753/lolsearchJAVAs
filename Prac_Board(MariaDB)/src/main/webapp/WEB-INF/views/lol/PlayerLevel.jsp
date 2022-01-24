@@ -6,7 +6,7 @@
 <html>
 <head>
 <link rel="stylesheet" href="resources/css/bootstrap.css">
-<link rel="stylesheet" href="resources/css/Playerinfo.css?ver=4"  type="text/css">
+<link rel="stylesheet" href="resources/css/Playerinfo.css?ver=17"  type="text/css">
 <script src="https://kit.fontawesome.com/80d7e22673.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -36,28 +36,42 @@
 	</div>
 	
 	
-	
+	<!--  
 	<h1>${matchdata.kills }</h1>
 	<h1>${matchdata.deaths }</h1>
 	<h1>${matchdata.assists }</h1>
 	<h1>${summoner.name }님 환영합니다.</h1>
 	<h1>소환사 레벨입니다</h1>
 	<h1>${summoner.level }</h1>
-	
+	-->
+	<h3>${summoner.name }님 환영합니다.</h3>
 		<!-- 로테이션 -->
-	
+		<img alt="아이콘" src=${iconURL } class="main-icon-img" >
 
-		<div class="rotation-content-index">
-			
-				<div class="rotation-content-main">
-				<div class="match-content"> 최근 전적 
-					${matchdata.kills }
-					${matchdata.deaths }
-					${matchdata.assists }
+
+				
+				<div class="match-content"> 
+					<div class="match-content-chaminfo">
+						<img alt="아이콘" src=${chamicon } class="match-content-chamimg" >
 					</div>
-					<img alt="아이콘" src=${iconURL } class="main-icon-img" >
-    			</div>
-	</div>
+					
+					<div class="kda">
+						<span class="kill">${matchdata.kills } / </span>
+						<span class="death">	${matchdata.deaths } /</span>
+						<span class="assist">	${matchdata.assists }</span>
+					</div>
+					
+					<div class="match-content-icondiv">
+						<img alt="rotation" src="http://ddragon.leagueoflegends.com/cdn/12.2.1/img/item/${matchdata.item0}.png"  class="match-content-itemicon" >
+						<img alt="rotation" src="http://ddragon.leagueoflegends.com/cdn/12.2.1/img/item/${matchdata.item1}.png"  class="match-content-itemicon" >
+						<img alt="rotation" src="http://ddragon.leagueoflegends.com/cdn/12.2.1/img/item/${matchdata.item2}.png"  class="match-content-itemicon" >
+						<img alt="rotation" src="http://ddragon.leagueoflegends.com/cdn/12.2.1/img/item/${matchdata.item6}.png"  class="match-content-itemicon" >
+						<img alt="rotation" src="http://ddragon.leagueoflegends.com/cdn/12.2.1/img/item/${matchdata.item3}.png"  class="match-content-itemicon" >
+						<img alt="rotation" src="http://ddragon.leagueoflegends.com/cdn/12.2.1/img/item/${matchdata.item4}.png"  class="match-content-itemicon" >
+						<img alt="rotation" src="http://ddragon.leagueoflegends.com/cdn/12.2.1/img/item/${matchdata.item5}.png"  class="match-content-itemicon" >
+					</div>
+				</div>
+
 	
 	
 	

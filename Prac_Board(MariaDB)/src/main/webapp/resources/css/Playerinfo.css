@@ -25,10 +25,38 @@
 
 }
 .main-icon-img{
-	width:84px;
-	height:84px;
+	width:80px;
+	height:80px;
 }
+.match-content-chamimg{
+	width:80px;
+	height:80px;
+
+	border-radius: 50px;
+	display:table-cell;
+}	
 .match-content{
-	font-weight: bold;
-	font-size:13px;
+	
+	display:table;
+	table-layout: fixed;
+	width:500px;
+}
+
+.match-content-itemicon{
+	width:40px;
+	height:40px;
+}
+.match-content-chaminfo{
+	width:180px;
+	
+}
+
+.match-content-icondiv{
+	width:180px;
+	display:table-cell;
+}
+.kda{
+	display:table-cell;
+	font-size:14px;
+	text-align:center;
 }
