@@ -144,6 +144,8 @@ public class SummonerController {
 		String SummonerName = request.getParameter("sname");
 		SummonerVO temp = null;
 		MatchdataVO matchData = null;
+		ArrayList<MatchdataVO> resultarr = new ArrayList<>();
+		
 		try {
 			String urlstr ="https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/"+
 					SummonerName +"?api_key="+API_KEY;
@@ -180,7 +182,7 @@ public class SummonerController {
 			
 			//소환사 매치 검색
 			String urlstr2 ="https://asia.api.riotgames.com/lol/match/v5/matches/by-puuid/"+puuid+
-					"/ids?start=0&count=1&api_key="+ API_KEY;
+					"/ids?start=0&count=5&api_key="+ API_KEY;
 			
 			URL url2 = new URL(urlstr2);
 			HttpURLConnection urlconnection2 = (HttpURLConnection) url2.openConnection();
@@ -192,9 +194,13 @@ public class SummonerController {
 				result2 = result2 +  line2;
 			}
 			//JSONArray 객체이름이없으면 JSONObject를 사용하지않고 Array로파싱 
+			
+			
 			JSONArray obj = (JSONArray) jsonParser.parse(result2);
 			
-			String matchid = (String) obj.get(0);
+			for(int i = 0; i  < obj.size()  ; i++ ) {
+			
+			String matchid = (String) obj.get(i);
 			String matchurlstr ="https://asia.api.riotgames.com/lol/match/v5/matches/" + matchid + "?api_key="+ API_KEY;
 			URL matchDataurl = new URL(matchurlstr);
 			HttpURLConnection matchdataconn = (HttpURLConnection) matchDataurl.openConnection();
@@ -220,8 +226,8 @@ public class SummonerController {
 			//Set<String> keys = datajson.keySet();
 			System.out.println(arr);
 			if (arr.size() > 0 ) {
-				for(int i = 0; i<arr.size(); i++) {
-					JSONObject namedataobj = (JSONObject)arr.get(i);
+				for(int j = 0; j<arr.size(); j++) {
+					JSONObject namedataobj = (JSONObject)arr.get(j);
 					String namedata = (String)namedataobj.get("summonerName");
 					Long killsdata = ((Long)namedataobj.get("kills"));
 					Long deathsdata = ((Long)namedataobj.get("deaths"));
@@ -233,8 +239,9 @@ public class SummonerController {
 					Long item4 = ((Long)namedataobj.get("item4"));
 					Long item5 = ((Long)namedataobj.get("item5"));
 					Long item6 = ((Long)namedataobj.get("item6"));
+					boolean winlose = (boolean)namedataobj.get("win");
 					String chamName = ((String)namedataobj.get("championName"));
-					if(namedata.equals("Percier")) {
+					if(namedata.equals(name)) {
 						System.out.println("본인확인  : " + namedata);
 						
 						System.out.println("플레이 캐릭터 : " + (String)namedataobj.get("championName") );
@@ -244,20 +251,23 @@ public class SummonerController {
 						System.out.println("데스 : " + deathsdata );
 						System.out.println("어시 : " + assistsdata);
 						temp = new SummonerVO(iconid, name, level, puuid);
-						matchData = new MatchdataVO (namedata, chamName, killsdata,  deathsdata, assistsdata,item0, item1, item2, item3, item4, item5, item6);
+						matchData = new MatchdataVO (namedata, chamName, winlose, killsdata,  deathsdata, assistsdata,item0, item1, item2, item3, item4, item5, item6);
+					
+						resultarr.add(matchData);
+					}
 					}
 				}
 			}
 		}catch(Exception e) {
 			System.out.println(e.getMessage());
 		}
+		model.addAttribute("info", resultarr);
 		model.addAttribute("matchdata", matchData);
 		model.addAttribute("summoner", temp);
 		model.addAttribute("iconURL",
-				"http://ddragon.leagueoflegends.com/cdn/12.2.1/img/profileicon/"
+				"http://ddragon.leagueoflegends.com/cdn/12.3.1/img/profileicon/"
 				+temp.getIconid()+".png");
-		model.addAttribute("chamicon",
-				"http://ddragon.leagueoflegends.com/cdn/12.2.1/img/champion/"+matchData.getChamName()+".png");
+
 		
 		return "lol/PlayerLevel";
 	}

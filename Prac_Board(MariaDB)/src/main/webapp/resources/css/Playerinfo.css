@@ -28,35 +28,79 @@
 	width:80px;
 	height:80px;
 }
-.match-content-chamimg{
-	width:80px;
-	height:80px;
 
-	border-radius: 50px;
-	display:table-cell;
-}	
 .match-content{
-	
-	display:table;
-	table-layout: fixed;
-	width:500px;
+    background-color: #FFFAFA;
+    border-color: #cea7a7;
+    display: table;
+    table-layout: fixed;
+    width:640px;
+    border-collapse: collapse;
+    border: 1px solid #cdd2d2;
+    margin-bottom: 8px;
 }
+.match-content >div{
+	display: table-cell;
+    height: 96px;
+    vertical-align: middle;
+}
+
 
 .match-content-itemicon{
-	width:40px;
-	height:40px;
+	width:100%;
+	height:100%;
 }
 .match-content-chaminfo{
-	width:180px;
+	width:80px;
+	
+}
+.match-content-chamimg{
+	display: inline-block;
+	width:80px;
+	height:80px;
+	vertical-align : middle;
+	border-radius: 50%;
+	
+}	
+
+.match-content-icondiv{
+	width:180px;	
+}
+.match-content > .match-content-icondiv > .itemlist >.item >.noitem{
+	width:40px;
+	height:40px;
 	
 }
 
-.match-content-icondiv{
-	width:180px;
-	display:table-cell;
+.match-content > .match-content-icondiv > .itemlist >.item{
+	display: inline-block;
+	width:40px;
+	height:40px;
+	border: 1px solid #cdd2d2;
+	margin-bottom: 3px;
 }
-.kda{
-	display:table-cell;
+
+
+
+
+
+.match-content > .match-content-icondiv > .itemlist{
+	width:180px;
+	margin:0 auto;
+}
+
+.match-content-kda{
+	width:50px;
 	font-size:14px;
 	text-align:center;
+}
+
+.match-content > .match-content-winlose{
+	width:20px;
+	font-size:14px;
+	text-align:center;
+}
+
+.space{
+
 }

@@ -6,7 +6,7 @@
 <html>
 <head>
 <link rel="stylesheet" href="resources/css/bootstrap.css">
-<link rel="stylesheet" href="resources/css/Playerinfo.css?ver=17"  type="text/css">
+<link rel="stylesheet" href="resources/css/Playerinfo.css?ver=44"  type="text/css">
 <script src="https://kit.fontawesome.com/80d7e22673.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -37,9 +37,9 @@
 	
 	
 	<!--  
-	<h1>${matchdata.kills }</h1>
-	<h1>${matchdata.deaths }</h1>
-	<h1>${matchdata.assists }</h1>
+	<h1>${info[st.index].kills }</h1>
+	<h1>${info[st.index].deaths }</h1>
+	<h1>${info[st.index].assists }</h1>
 	<h1>${summoner.name }님 환영합니다.</h1>
 	<h1>소환사 레벨입니다</h1>
 	<h1>${summoner.level }</h1>
@@ -47,31 +47,134 @@
 	<h3>${summoner.name }님 환영합니다.</h3>
 		<!-- 로테이션 -->
 		<img alt="아이콘" src=${iconURL } class="main-icon-img" >
-
-
-				
+				<div class="main-div">
+				<c:forEach items="${info}" var="matchHistory" varStatus="st">
 				<div class="match-content"> 
-					<div class="match-content-chaminfo">
-						<img alt="아이콘" src=${chamicon } class="match-content-chamimg" >
+					
+					<div class="match-content-winlose">
+						<c:if test="${info[st.index].winlose eq 'true'}">
+							<span class="win">승리</span>
+						</c:if>
+						
+						<c:if test="${info[st.index].winlose eq 'false'}">
+							<span class="lose">패배</span>
+						</c:if>
 					</div>
 					
-					<div class="kda">
-						<span class="kill">${matchdata.kills } / </span>
-						<span class="death">	${matchdata.deaths } /</span>
-						<span class="assist">	${matchdata.assists }</span>
+					
+					<div class="match-content-chaminfo">
+						<img alt="아이콘" src="http://ddragon.leagueoflegends.com/cdn/12.3.1/img/champion/${info[st.index].chamName}.png" class="match-content-chamimg" >
+					</div>
+					
+					<div class="match-content-kda">
+						<span class="kill">		${info[st.index].kills} / </span>
+						<span class="death">	${info[st.index].deaths } /</span>
+						<span class="assist">	${info[st.index].assists }</span>
 					</div>
 					
 					<div class="match-content-icondiv">
-						<img alt="rotation" src="http://ddragon.leagueoflegends.com/cdn/12.2.1/img/item/${matchdata.item0}.png"  class="match-content-itemicon" >
-						<img alt="rotation" src="http://ddragon.leagueoflegends.com/cdn/12.2.1/img/item/${matchdata.item1}.png"  class="match-content-itemicon" >
-						<img alt="rotation" src="http://ddragon.leagueoflegends.com/cdn/12.2.1/img/item/${matchdata.item2}.png"  class="match-content-itemicon" >
-						<img alt="rotation" src="http://ddragon.leagueoflegends.com/cdn/12.2.1/img/item/${matchdata.item6}.png"  class="match-content-itemicon" >
-						<img alt="rotation" src="http://ddragon.leagueoflegends.com/cdn/12.2.1/img/item/${matchdata.item3}.png"  class="match-content-itemicon" >
-						<img alt="rotation" src="http://ddragon.leagueoflegends.com/cdn/12.2.1/img/item/${matchdata.item4}.png"  class="match-content-itemicon" >
-						<img alt="rotation" src="http://ddragon.leagueoflegends.com/cdn/12.2.1/img/item/${matchdata.item5}.png"  class="match-content-itemicon" >
+					<div class="itemlist">
+        			<c:choose> 
+					<c:when test="${info[st.index].item0 ne '0' }">
+						<div class="item">
+							<img alt="item" src="http://ddragon.leagueoflegends.com/cdn/12.3.1/img/item/${info[st.index].item0}.png"  class="match-content-itemicon" >
+						</div>	 
+        			</c:when>
+					<c:otherwise> 
+						<div class="item">
+							<img alt="blank" src="resources/img/blank.png" class="match-content-itemicon">
+						</div>	
+					</c:otherwise> 
+					</c:choose>
+					 
+					 <c:choose> 
+					<c:when test="${info[st.index].item1 ne '0' }">
+						<div class="item">
+							<img alt="item" src="http://ddragon.leagueoflegends.com/cdn/12.3.1/img/item/${info[st.index].item1}.png"  class="match-content-itemicon" >
+						</div>	 
+        			</c:when>
+					<c:otherwise> 
+						<div class="item">
+							<img alt="blank" src="resources/img/blank.png" class="match-content-itemicon">
+						</div>	
+					</c:otherwise> 
+					</c:choose>
+					
+					<c:choose> 
+					<c:when test="${info[st.index].item2 ne '0' }">
+						<div class="item">
+							<img alt="item" src="http://ddragon.leagueoflegends.com/cdn/12.3.1/img/item/${info[st.index].item2}.png"  class="match-content-itemicon" >
+						</div>	 
+        			</c:when>
+					<c:otherwise> 
+						<div class="item">
+							<img alt="blank" src="resources/img/blank.png" class="match-content-itemicon">
+						</div>	
+					</c:otherwise> 
+					</c:choose>
+					
+					<c:choose> 
+					<c:when test="${info[st.index].item6 ne '0' }">
+						<div class="item">
+							<img alt="item" src="http://ddragon.leagueoflegends.com/cdn/12.3.1/img/item/${info[st.index].item6}.png"  class="match-content-itemicon" >
+						</div>	 
+        			</c:when>
+					<c:otherwise> 
+						<div class="item">
+							<img alt="blank" src="resources/img/blank.png" class="match-content-itemicon">
+						</div>	
+					</c:otherwise> 
+					</c:choose>
+					
+					<c:choose> 
+					<c:when test="${info[st.index].item3 ne '0' }">
+						<div class="item">
+							<img alt="item" src="http://ddragon.leagueoflegends.com/cdn/12.3.1/img/item/${info[st.index].item3}.png"  class="match-content-itemicon" >
+						</div>	 
+        			</c:when>
+					<c:otherwise> 
+						<div class="item">
+							<img alt="blank" src="resources/img/blank.png" class="match-content-itemicon">
+						</div>	
+					</c:otherwise> 
+					</c:choose>
+					
+					<c:choose> 
+					<c:when test="${info[st.index].item4 ne '0' }">
+						<div class="item">
+							<img alt="item" src="http://ddragon.leagueoflegends.com/cdn/12.3.1/img/item/${info[st.index].item4}.png"  class="match-content-itemicon" >
+						</div>	 
+        			</c:when>
+					<c:otherwise> 
+						<div class="item">
+							<img alt="blank" src="resources/img/blank.png" class="match-content-itemicon">
+						</div>	
+					</c:otherwise> 
+					</c:choose>
+					
+					<c:choose> 
+					<c:when test="${info[st.index].item5 ne '0' }">
+						<div class="item">
+							<img alt="item" src="http://ddragon.leagueoflegends.com/cdn/12.3.1/img/item/${info[st.index].item5}.png"  class="match-content-itemicon" >
+						</div>	 
+        			</c:when>
+					<c:otherwise> 
+						<div class="item">
+								<img alt="blank" src="resources/img/blank.png" class="match-content-itemicon">
+						</div>	
+					</c:otherwise> 
+					</c:choose>
+					
+					
+					
+				
+      				
+
+					</div>
 					</div>
 				</div>
-
+				</c:forEach>
+				</div>
 	
 	
 	

@@ -39,8 +39,9 @@
 				<div class="rotation-nav"> 이번주 로테이션  ( ${rotatTime} ~ ${rotatendTime } ) </div>
 				<c:forEach items="${info}" var="infocham" varStatus="st">
 
+
 						<div class="rotation">
-						<img alt="rotation" src="http://ddragon.leagueoflegends.com/cdn/12.2.1/img/champion/${info[st.index].id}.png"  class="chamimg" >
+						<img alt="rotation" src="http://ddragon.leagueoflegends.com/cdn/12.3.1/img/champion/${info[st.index].id}.png"  class="chamimg" >
     					<div class="chamName">${info[st.index].name}</div>
 						</div>
 					

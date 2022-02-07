@@ -2,6 +2,10 @@ package com.Prac.model;
 
 public class MatchdataVO {
 	private String summonerName;
+	private boolean winlose;
+
+
+
 	private Long kills;
 	private Long deaths;
 	private Long assists;
@@ -18,7 +22,13 @@ public class MatchdataVO {
 	public MatchdataVO() {
 		
 	}
-	
+	public boolean getWinlose() {
+		return winlose;
+	}
+	public void setWinlose(boolean winlose) {
+		this.winlose = winlose;
+	}
+
 	
 	
 	public String getSummonerName() {
@@ -165,10 +175,11 @@ public class MatchdataVO {
 
 
 
-	public MatchdataVO(String summonerName, String chamName, Long kills, Long deaths, Long assists
+	public MatchdataVO(String summonerName, String chamName,boolean winlose , Long kills, Long deaths, Long assists
 			,Long item0, Long item1, Long item2, Long item3, Long item4, Long item5, Long item6) {
 		this.summonerName = summonerName;
 		this.chamName = chamName;
+		this.winlose = winlose;
 		this.kills = kills;
 		this.deaths = deaths;
 		this.assists = assists;
@@ -179,6 +190,7 @@ public class MatchdataVO {
 		this.item4 = item4;
 		this.item5 = item5;
 		this.item6 = item6;
+		
 	}
 	
 	
