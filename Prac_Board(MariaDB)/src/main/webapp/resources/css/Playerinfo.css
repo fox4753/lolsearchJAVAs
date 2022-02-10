@@ -66,13 +66,13 @@
 .match-content-icondiv{
 	width:180px;	
 }
-.match-content > .match-content-icondiv > .itemlist >.item >.noitem{
+.match-content-icondiv > .itemlist >.item >.noitem{
 	width:40px;
 	height:40px;
 	
 }
 
-.match-content > .match-content-icondiv > .itemlist >.item{
+ .match-content-icondiv > .itemlist >.item{
 	display: inline-block;
 	width:40px;
 	height:40px;
@@ -84,7 +84,7 @@
 
 
 
-.match-content > .match-content-icondiv > .itemlist{
+.match-content-icondiv > .itemlist{
 	width:180px;
 	margin:0 auto;
 }
@@ -95,8 +95,8 @@
 	text-align:center;
 }
 
-.match-content > .match-content-winlose{
-	width:20px;
+.match-content-winlose{
+	width:70px;
 	font-size:14px;
 	text-align:center;
 }
